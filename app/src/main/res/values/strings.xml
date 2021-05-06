@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">rating finder</string>
     <string-array name="website">
-        <item>none</item>
+        <item>None</item>
         <item>codechef</item>
         <item>codeforces</item>
-        <item>hackerearth</item>
+        <item>Hackerearth</item>
     </string-array>
     <string name="please_wait">Please Wait..</string>
 </resources>
