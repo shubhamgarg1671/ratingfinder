@@ -6,8 +6,13 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONObject
+import java.util.*
+import kotlin.reflect.typeOf
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,18 +44,21 @@ class MainActivity : AppCompatActivity() {
             var res: String = ""
 
             // Request a string response from the provided URL.
-            val stringRequest = StringRequest(Request.Method.GET, url,
+            val JSONObject = JsonObjectRequest(Request.Method.GET, url, null,
                     { response ->
+
                         // Display the first 500 characters of the response string.
-                        res = "Response is: ${response}"
+                        res = "Current Rating is: ${response.getString("rating")}"
+                        //Log.e("rating", response.getString("rating"))
+
                         Toast.makeText(this, res, Toast.LENGTH_LONG).show()
                     },
                     { res = "That didn't work!"
                         Toast.makeText(this, res, Toast.LENGTH_LONG).show()
                     })
 
-// Add the request to the RequestQueue.
-            queue.add(stringRequest)
+            // Add the request to the RequestQueue.
+            queue.add(JSONObject)
 
 
         }
