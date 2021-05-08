@@ -47,13 +47,25 @@ class MainActivity : AppCompatActivity() {
             val JSONObject = JsonObjectRequest(Request.Method.GET, url, null,
                     { response ->
 
-                        // Display the first 500 characters of the response string.
-                        res = "Current Rating is: ${response.getString("rating")}"
+
+                        if(response.has("rating")){
+                            // succes
+                            // Rating is found
+                            res = "Current Rating is: ${response.optString("rating")}"
+
+
+                        } else {
+                            res = "Error: ${response.optString("details")}"
+
+                            // It doesn't exist, do nothing
+                        }
+
+
                         //Log.e("rating", response.getString("rating"))
 
                         Toast.makeText(this, res, Toast.LENGTH_LONG).show()
                     },
-                    { res = "That didn't work!"
+                    { res = "Something went Wrong"
                         Toast.makeText(this, res, Toast.LENGTH_LONG).show()
                     })
 
