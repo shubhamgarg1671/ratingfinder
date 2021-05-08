@@ -1,6 +1,8 @@
 package com.example.ratingfinder
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -60,6 +62,11 @@ class MainActivity : AppCompatActivity() {
                             // It doesn't exist, do nothing
                         }
 
+
+                        val intent = Intent(this, DisplayRatingActivity::class.java).apply {
+                            putExtra(EXTRA_MESSAGE, res)
+                        }
+                        startActivity(intent)
 
                         //Log.e("rating", response.getString("rating"))
 
