@@ -62,7 +62,6 @@ class MainActivity : AppCompatActivity() {
                             // It doesn't exist, do nothing
                         }
 
-
                         val intent = Intent(this, DisplayRatingActivity::class.java).apply {
                             putExtra(EXTRA_MESSAGE, res)
                         }
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
                         //Log.e("rating", response.getString("rating"))
 
-                        Toast.makeText(this, res, Toast.LENGTH_LONG).show()
+                        //Toast.makeText(this, res, Toast.LENGTH_LONG).show()
                     },
                     { res = "Something went Wrong"
                         Toast.makeText(this, res, Toast.LENGTH_LONG).show()
