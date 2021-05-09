@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">rating finder</string>
+    <string name="app_name">CP rating finder</string>
     <string-array name="website">
         <item>None</item>
         <item>codechef</item>
