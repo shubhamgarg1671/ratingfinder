@@ -3,17 +3,12 @@ package com.example.ratingfinder
 import android.content.Intent
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
-import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import org.json.JSONObject
 import java.util.*
-import kotlin.reflect.typeOf
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,11 +29,11 @@ class MainActivity : AppCompatActivity() {
             // displaying a toast message Please wait..
             Toast.makeText(this, R.string.please_wait, Toast.LENGTH_LONG).show()
 
-            val editText = findViewById<EditText>(R.id.handle_name)
+            val user = findViewById<EditText>(R.id.handle_name)
             //Log.e("shub", editText.text.toString())
             val platformName: String = spinner.selectedItem.toString()
             //Log.e("shu", platformName)
-            val url: String = "https://competitive-coding-api.herokuapp.com/api/$platformName/${editText.text.toString()}"
+            val url: String = "https://competitive-coding-api.herokuapp.com/api/$platformName/${user.text.toString()}"
             //val url: String = "https://competitive-coding-api.herokuapp.com/api/codechef/shubhamgarg16"
             //Log.e("sh", url)
             val queue = Volley.newRequestQueue(this)
@@ -62,8 +57,14 @@ class MainActivity : AppCompatActivity() {
                             // It doesn't exist, do nothing
                         }
 
+                        val bundle = Bundle()
+                        bundle.putString("result", res)
+                        bundle.putString("platform", platformName)
+                        bundle.putString("User", user.text.toString())
+
+
                         val intent = Intent(this, DisplayRatingActivity::class.java).apply {
-                            putExtra(EXTRA_MESSAGE, res)
+                            putExtras(bundle)
                         }
                         startActivity(intent)
 
@@ -81,7 +82,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-    //code for dropdown in spinner
+        //code for dropdown in spinner
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
                 this,

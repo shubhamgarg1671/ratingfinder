@@ -25,7 +25,8 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(intent)
         }
 
-        // I had copied this code from stackoverflow
+
+        // I had copied this line from stackoverflow
         // Since volley is used for api requests and volley uses cache memory for same requests sent multiple times
         // So I am trying to delete app deta here so that latest rating are fetched always.
         this.cacheDir.deleteRecursively()
