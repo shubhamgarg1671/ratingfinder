@@ -35,10 +35,11 @@ class DisplayRatingActivity : AppCompatActivity() {
             var url: String = ""
             // storing ID of the button
             // in a variable
-            val button = findViewById<Button>(R.id.gotoProfile)
+            val gotoProfile = findViewById<Button>(R.id.gotoProfile)
+            val addFriend = findViewById<Button>(R.id.AddFriend)
             if (message?.get(0).toString() == "E")
             {
-                button.setVisibility(View.GONE);
+                gotoProfile.setVisibility(View.GONE);
             }
             else if (platform == "codeforces") {
                 //https://codeforces.com/profile/shubham_garg16
@@ -48,10 +49,12 @@ class DisplayRatingActivity : AppCompatActivity() {
                 //https://codechef.com/users/shubhamgarg16
                 url = "https://codechef.com/users/$user"
             }
+            addFriend.setVisibility(View.GONE);
+
 
             // operations to be performed
             // when user tap on the button
-            button.setOnClickListener()
+            gotoProfile.setOnClickListener()
             {
                 // displaying a toast message Please wait..
                 Toast.makeText(this, R.string.please_wait, Toast.LENGTH_LONG).show()

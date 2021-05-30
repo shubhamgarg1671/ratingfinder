@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
                         //Toast.makeText(this, res, Toast.LENGTH_LONG).show()
                     },
-                    { res = "Something went Wrong"
+                    { res = "Something went Wrong. Please try again"
                         Toast.makeText(this, res, Toast.LENGTH_LONG).show()
                     })
 

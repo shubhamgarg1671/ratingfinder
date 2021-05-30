@@ -10,11 +10,13 @@
         android:id="@+id/ratingOutput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="14dp"
         android:text="TextView"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.143"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,10 +24,29 @@
         android:id="@+id/gotoProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="52dp"
         android:text="Go to profile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingOutput" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingOutput"
+        app:layout_constraintRight_toLeftOf="@+id/AddFriend"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+<!---
+Add as Friend button visibility.GONE from the kotlin file
+so this button will not be visible
+-->
+    <Button
+        android:id="@+id/AddFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="Add as friend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.778"
+        app:layout_constraintStart_toEndOf="@+id/gotoProfile"
+        app:layout_constraintTop_toBottomOf="@+id/ratingOutput"
+        app:layout_constraintLeft_toRightOf="@+id/gotoProfile"
+        app:layout_constraintRight_toRightOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
