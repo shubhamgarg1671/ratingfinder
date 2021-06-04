@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.ratingfinder.model.Friend
 import java.util.*
 
 
@@ -30,12 +31,16 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.please_wait, Toast.LENGTH_LONG).show()
 
             val user = findViewById<EditText>(R.id.handle_name)
-            //Log.e("shub", editText.text.toString())
+
             val platformName: String = spinner.selectedItem.toString()
-            //Log.e("shu", platformName)
-            val url: String = "https://competitive-coding-api.herokuapp.com/api/$platformName/${user.text.toString()}"
+
+            val friend = Friend(platformName, user.text.toString())
+
+            /*val url: String = "https://competitive-coding-api.herokuapp.com/api/$platformName/${user.text.toString()}"
             //val url: String = "https://competitive-coding-api.herokuapp.com/api/codechef/shubhamgarg16"
-            //Log.e("sh", url)
+*/
+            val url: String = friend.apiurl()
+
             val queue = Volley.newRequestQueue(this)
 
             var res: String = ""
@@ -61,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                         bundle.putString("result", res)
                         bundle.putString("platform", platformName)
                         bundle.putString("User", user.text.toString())
-
+                        bundle.putString("ProfileURL", friend.getProfileLink())
 
                         val intent = Intent(this, DisplayRatingActivity::class.java).apply {
                             putExtras(bundle)
@@ -69,17 +74,13 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
 
                         //Log.e("rating", response.getString("rating"))
-
                         //Toast.makeText(this, res, Toast.LENGTH_LONG).show()
                     },
                     { res = "Something went Wrong. Please try again"
                         Toast.makeText(this, res, Toast.LENGTH_LONG).show()
                     })
-
             // Add the request to the RequestQueue.
             queue.add(JSONObject)
-
-
         }
 
         //code for dropdown in spinner

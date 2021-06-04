@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-
+import com.example.ratingfinder.model.Friend
 
 class DisplayRatingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,29 +31,18 @@ class DisplayRatingActivity : AppCompatActivity() {
             }
             val platform: String? = bundle.getString("platform")
             val user: String? = bundle.getString("User")
-            Log.e("USER", user.toString())
-            var url: String = ""
+            val url: String? = bundle.getString("ProfileURL")
+
             // storing ID of the button
             // in a variable
             val gotoProfile = findViewById<Button>(R.id.gotoProfile)
             val addFriend = findViewById<Button>(R.id.AddFriend)
             if (message?.get(0).toString() == "E")
             {
-                gotoProfile.setVisibility(View.GONE);
+                gotoProfile.setVisibility(View.GONE)
             }
-            else if (platform == "codeforces") {
-                //https://codeforces.com/profile/shubham_garg16
-                url = "https://codeforces.com/profile/$user"
-            }
-            else if (platform == "codechef") {
-                //https://codechef.com/users/shubhamgarg16
-                url = "https://codechef.com/users/$user"
-            }
-            addFriend.setVisibility(View.GONE);
+            addFriend.setVisibility(View.GONE)
 
-
-            // operations to be performed
-            // when user tap on the button
             gotoProfile.setOnClickListener()
             {
                 // displaying a toast message Please wait..
@@ -63,9 +52,7 @@ class DisplayRatingActivity : AppCompatActivity() {
                 httpIntent.data = Uri.parse(url)
 
                 startActivity(httpIntent)
-
             }
-
         }
     }
 }
