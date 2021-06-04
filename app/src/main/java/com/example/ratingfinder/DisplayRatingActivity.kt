@@ -39,9 +39,9 @@ class DisplayRatingActivity : AppCompatActivity() {
             val addFriend = findViewById<Button>(R.id.AddFriend)
             if (message?.get(0).toString() == "E")
             {
-                gotoProfile.setVisibility(View.GONE)
+                gotoProfile.visibility = View.GONE
+                addFriend.visibility = View.GONE
             }
-            addFriend.setVisibility(View.GONE)
 
             gotoProfile.setOnClickListener()
             {
@@ -52,6 +52,13 @@ class DisplayRatingActivity : AppCompatActivity() {
                 httpIntent.data = Uri.parse(url)
 
                 startActivity(httpIntent)
+            }
+            addFriend.setOnClickListener (){
+                Toast.makeText(this, "Added as Friend", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, FriendList::class.java).apply {
+                    putExtras(bundle)
+                }
+                startActivity(intent)
             }
         }
     }

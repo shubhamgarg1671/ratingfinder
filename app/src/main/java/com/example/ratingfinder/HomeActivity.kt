@@ -13,16 +13,22 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        val button = findViewById<Button>(R.id.findRating)
+        val findRating = findViewById<Button>(R.id.findRating)
 
         // operations to be performed
         // when user tap on the button
-        button.setOnClickListener()
-        {
-                    val intent = Intent(this, MainActivity::class.java).apply {
+        findRating.setOnClickListener() {
+            val intent = Intent(this, MainActivity::class.java).apply{}
+            startActivity(intent)
+        }
 
-                    }
-                    startActivity(intent)
+        val friendList = findViewById<Button>(R.id.Friend_list)
+
+        // operations to be performed
+        // when user tap on the button
+        friendList.setOnClickListener() {
+            val intent = Intent(this, FriendList::class.java).apply{}
+            startActivity(intent)
         }
 
 
