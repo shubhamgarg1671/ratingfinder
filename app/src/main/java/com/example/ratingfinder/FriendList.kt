@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.io.*
 
-
 class FriendList : AppCompatActivity() {
     companion object {
 
