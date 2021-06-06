@@ -11,7 +11,6 @@ import com.android.volley.toolbox.Volley
 import com.example.ratingfinder.model.Friend
 import java.util.*
 
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

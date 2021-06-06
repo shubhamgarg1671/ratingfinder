@@ -1,10 +1,14 @@
 package com.example.ratingfinder
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.ratingfinder.Adapter.FriendAdapter
+import com.example.ratingfinder.model.Friend
 import java.io.*
 
 class FriendList : AppCompatActivity() {
@@ -15,6 +19,8 @@ class FriendList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friend_list)
 
+        val sharedPref: SharedPreferences = getPreferences(Context.MODE_PRIVATE)
+        val friendArray = arrayListOf<Friend>()
         val bundle = intent.extras
         if (bundle!=null) {
             val message: String? = bundle.getString("result")
@@ -22,45 +28,35 @@ class FriendList : AppCompatActivity() {
             val user: String? = bundle.getString("User")
             val url: String? = bundle.getString("ProfileURL")
             Log.e("FriendList Activity", "through add friend button")
+            val editor: SharedPreferences.Editor = sharedPref.edit()
+
+            // Using current time stamp as key in sharedPreference
+            val currentTime = System.nanoTime().toString()
+            editor.putString(currentTime, platform+user)
+            editor.apply()
         }
         else
         {
             Log.e("FriendList Activity", "just a friend list")
         }
-
-
-            val filename = "myfile"
-        val fileContents = "Hello world!"
-        try {
-            val outputStreamWriter: OutputStreamWriter = OutputStreamWriter(this.openFileOutput(filename, Context.MODE_PRIVATE))
-            outputStreamWriter.write(fileContents);
-            outputStreamWriter.close();
-            }
-        catch (e: IOException) {
-            Log.e("Exception", "File write failed: " + e.toString());
+        val allEntries: Map<String, *> = sharedPref.getAll()
+        for ((key, value) in allEntries) {
+            Log.e("map values", key + ": " + value.toString())
         }
 
-        var line: String = ""
+        val recyclerView = findViewById<RecyclerView>(R.id.friend_list)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        val item = getdata()
+        val adapter: FriendAdapter = FriendAdapter(item)
+        recyclerView.adapter= adapter
 
-        try {
-            val inputStream: InputStream = this.openFileInput(filename)
-            if (inputStream != null) {
-                val inputStreamReader = InputStreamReader(inputStream)
-                val bufferedReader = BufferedReader(inputStreamReader)
-                var receiveString: String? = ""
-                val stringBuilder = StringBuilder()
-                while (bufferedReader.readLine().also { receiveString = it } != null) {
-                    stringBuilder.append("\n").append(receiveString)
-                }
-                inputStream.close()
-                line = stringBuilder.toString()
-            }
-        } catch (e: FileNotFoundException) {
-            Log.e("login activity", "File not found: $e")
-        } catch (e: IOException) {
-            Log.e("login activity", "Can not read file: $e")
+    }
+    private fun getdata(): ArrayList<String> {
+        val list = ArrayList<String>()
+        for (i in 0 until 1)
+        {
+            list.add(" Coming Soon...")
         }
-
-        Log.e(filename, line)
+        return list
     }
 }
