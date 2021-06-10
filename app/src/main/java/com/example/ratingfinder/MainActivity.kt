@@ -3,6 +3,7 @@ package com.example.ratingfinder
 import android.content.Intent
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
@@ -75,7 +76,9 @@ class MainActivity : AppCompatActivity() {
                         //Log.e("rating", response.getString("rating"))
                         //Toast.makeText(this, res, Toast.LENGTH_LONG).show()
                     },
-                    { res = "Something went Wrong. Please try again"
+                    { error ->
+                        Log.e("Volley error", error.toString())
+                        res = "Something went Wrong. Please try again"
                         Toast.makeText(this, res, Toast.LENGTH_LONG).show()
                     })
             // Add the request to the RequestQueue.

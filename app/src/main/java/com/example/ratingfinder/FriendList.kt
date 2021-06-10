@@ -32,7 +32,7 @@ class FriendList : AppCompatActivity() {
 
             // Using current time stamp as key in sharedPreference
             val currentTime = System.nanoTime().toString()
-            editor.putString(currentTime, platform+user)
+            editor.putString(currentTime, "$platform $user")
             editor.apply()
         }
         else
@@ -42,14 +42,14 @@ class FriendList : AppCompatActivity() {
         val allEntries: Map<String, *> = sharedPref.getAll()
         for ((key, value) in allEntries) {
             Log.e("map values", key + ": " + value.toString())
+            val str = value.toString().split(" ").toTypedArray()
+            Log.e("map values", str[0] + ": " + str[1])
         }
-
         val recyclerView = findViewById<RecyclerView>(R.id.friend_list)
         recyclerView.layoutManager = LinearLayoutManager(this)
         val item = getdata()
         val adapter: FriendAdapter = FriendAdapter(item)
         recyclerView.adapter= adapter
-
     }
     private fun getdata(): ArrayList<String> {
         val list = ArrayList<String>()
