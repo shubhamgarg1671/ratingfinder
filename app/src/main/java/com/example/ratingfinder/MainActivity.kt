@@ -31,35 +31,22 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.please_wait, Toast.LENGTH_LONG).show()
 
             val user = findViewById<EditText>(R.id.handle_name)
-
             val platformName: String = spinner.selectedItem.toString()
-
             val friend = Friend(platformName, user.text.toString())
-
-            /*val url: String = "https://competitive-coding-api.herokuapp.com/api/$platformName/${user.text.toString()}"
-            //val url: String = "https://competitive-coding-api.herokuapp.com/api/codechef/shubhamgarg16"
-*/
             val url: String = friend.apiurl()
-
             val queue = Volley.newRequestQueue(this)
-
             var res: String = ""
 
             // Request a string response from the provided URL.
             val JSONObject = JsonObjectRequest(Request.Method.GET, url, null,
                     { response ->
 
-
                         if(response.has("rating")){
                             // succes
                             // Rating is found
                             res = "Current Rating is: ${response.optString("rating")}"
-
-
                         } else {
                             res = "Error: ${response.optString("details")}"
-
-                            // It doesn't exist, do nothing
                         }
 
                         val bundle = Bundle()
@@ -72,9 +59,6 @@ class MainActivity : AppCompatActivity() {
                             putExtras(bundle)
                         }
                         startActivity(intent)
-
-                        //Log.e("rating", response.getString("rating"))
-                        //Toast.makeText(this, res, Toast.LENGTH_LONG).show()
                     },
                     { error ->
                         Log.e("Volley error", error.toString())
@@ -84,7 +68,6 @@ class MainActivity : AppCompatActivity() {
             // Add the request to the RequestQueue.
             queue.add(JSONObject)
         }
-
         //code for dropdown in spinner
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
